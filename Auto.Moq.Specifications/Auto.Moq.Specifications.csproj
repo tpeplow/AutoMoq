@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{14AC95E8-1894-4EF8-8BE9-D5936F88688E}</ProjectGuid>
+    <ProjectGuid>{33DF94A6-DE0B-4338-808C-9CC974D43789}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Auto.Moq</RootNamespace>
-    <AssemblyName>Auto.Moq</AssemblyName>
+    <RootNamespace>Auto.Moq.Specifications</RootNamespace>
+    <AssemblyName>Auto.Moq.Specifications</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\Libs\MSpec\Machine.Specifications.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\Libs\Moq\NET40\Moq.dll</HintPath>
     </Reference>
@@ -43,16 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayMockGenerator.cs" />
-    <Compile Include="AutoMoq.cs" />
-    <Compile Include="ConcreteMockGenerator.cs" />
-    <Compile Include="DefaultMockGenerator.cs" />
-    <Compile Include="EnumerableMockGenerator.cs" />
-    <Compile Include="IMockGenerator.cs" />
-    <Compile Include="MockedInstance.cs" />
-    <Compile Include="MockingContext.cs" />
+    <Compile Include="AutoMockSpecifications.cs" />
+    <Compile Include="EnumerableAutoMockSpecifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeMockingExtenstions.cs" />
+    <Compile Include="ThingToAutoMock.cs" />
+    <Compile Include="WithAndWithoutAutoMocker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Auto.Moq\Auto.Moq.csproj">
+      <Project>{14AC95E8-1894-4EF8-8BE9-D5936F88688E}</Project>
+      <Name>Auto.Moq</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
