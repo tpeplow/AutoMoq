@@ -1,13 +1,11 @@
+using System;
+using System.Collections;
+
 namespace Auto.Moq.Specifications
 {
-    using System.Collections.Generic;
-
-    using Auto.Moq;
+    using Moq;
 
     using Machine.Specifications;
-
-    using global::Moq;
-
     using It = Machine.Specifications.It;
 
     public class When_auto_mocking
@@ -88,7 +86,7 @@ namespace Auto.Moq.Specifications
 
         private It should_use_real_dependency_in_place_of_moq = () => AutoMoq.Object.Dependency.ShouldBeOfType<RealDependency>();
 
-        private It should_not_generate_mock = () => Catch.Exception(() => AutoMoq.GetMock<RealDependency>()).ShouldBeOfType<KeyNotFoundException>();
+        private It should_not_generate_mock = () => Catch.Exception(() => AutoMoq.GetMock<RealDependency>()).ShouldBeOfType<MockNotFoundException>();
 
         private class RealDependency : IDependency
         {
@@ -101,6 +99,15 @@ namespace Auto.Moq.Specifications
                 return string.Empty;
             }
         }
+    }
+
+    public class When_dependency_does_not_exist
+    {
+        static AutoMoq<SomethingWithADependency> autoMoq;
+        static Exception expectedException;
+        Establish context = () => autoMoq = new AutoMoq<SomethingWithADependency>();
+        Because of = () => expectedException = Catch.Exception(() => autoMoq.GetMock<IList>());
+        It should_notify_caller_that_there_is_no_mock_matching_the_type = () => expectedException.ShouldBeOfType<MockNotFoundException>();
     }
 
     public class HasConcreteDependency

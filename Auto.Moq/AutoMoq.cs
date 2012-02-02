@@ -47,7 +47,10 @@
 
         public Mock<TDependency> GetMock<TDependency>() where TDependency : class
         {
-            return (Mock<TDependency>)mocks[typeof(TDependency)];
+            Mock mock;
+            var found = mocks.TryGetValue(typeof(TDependency), out mock);
+            if (!found) throw new MockNotFoundException(typeof(TDependency));
+            return (Mock<TDependency>)mock;
         }
 
         public T Object { get; private set; }

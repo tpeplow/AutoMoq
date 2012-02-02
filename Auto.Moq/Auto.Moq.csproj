@@ -48,6 +48,7 @@
     <Compile Include="AutoMoq.cs" />
     <Compile Include="ConcreteMockGenerator.cs" />
     <Compile Include="DefaultMockGenerator.cs" />
+    <Compile Include="MockNotFoundException.cs" />
     <Compile Include="EnumerableMockGenerator.cs" />
     <Compile Include="IMockGenerator.cs" />
     <Compile Include="MockedInstance.cs" />
